@@ -1,0 +1,13 @@
+##Learn List
+* keyEvents
+* audio
+* transition end Event
+* animation(transition/transform)
+
+#Figure out 
+* ${}
+const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+* arrow function
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+

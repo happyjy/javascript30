@@ -58,6 +58,54 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  //##Learn List
+  //* keyEvents
+  //* audio
+  //* transition end Event
+  //* animation(transition/transform)
+
+  function playSound(e){
+    //1. document selector
+    //const audio = document.querySelector('audio[data-key="${e.keyCode}"]');
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+
+    //3. animation
+    // key : css - transition/transform, js - ClassList
+    // * transition : change property values smoothly
+    //  : want to check animation (add class 'transition'), change higher value (eg. transtion: all, 2.07s)
+    // * transform : rotate, scale, move, skew, etc., elements.
+    // * classList : The classList property returns the class name(s) of an element, as a DOMTokenList object.
+    // This property is useful to add, remove and toggle CSS classes on an element.
+    // The classList property is read-only, however, you can modify it by using the add() and remove() methods.
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`)
+    key.classList.add('playing');
+    //jquery way
+    //key.addClass('playing');
+    //[?] definition ${}
+    if(!audio) return;  //stop the function from runing all together
+    //2. rewind to the start
+    audio.currentTime = 0; // rewind to the start
+    audio.play();
+    
+    // console.log(audio);
+    // console.log(key);  
+  }
+  
+  //4. removeTransition
+  function removeTransition(e){
+    console.log("### reomveTransition e : " + e);
+    if(e.propertyName !== 'transform') return;// skip it if it's not a transform
+    
+    //this = elements(has class value 'key')
+    //this = what call against...-> key
+    this.classList.remove("playing")
+  }
+
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+  //It's a Node List - not an arraty.
+  //More on this in future videos!
+  window.addEventListener('keydown', playSound);
 </script>
 
 
