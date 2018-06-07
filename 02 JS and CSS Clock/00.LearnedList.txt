@@ -1,0 +1,32 @@
+1. CSS
+transform: rotate(90deg);
+transform-orgigin: 100%;
+transition: all 0.05s;
+transition-timing-function: ease-in-out or cubic-bezier(0.1, 2.7, 0.58, 1);
+ 
+#transform 
+: The transform property applies a 2D or 3D transformation to an element. This property allows you to rotate, scale, move, skew, etc., elements.
+
+#transform-orgigin
+: The transform-origin property allows you to change the position of transformed elements.
+2D transformations can change the x- and y-axis of an element. 3D transformations can also change the z-axis of an element.
+
+#transition
+: CSS transitions allows you to change property values smoothly (from one value to another), over a given duration.
+
+#transition-timing-function
+: specifies the speed curve of the transition effect.
+
+
+
+2. setInterval
+
+3. new Date()
+const now = new Date();
+now.getSeconds();
+now.getMinutes();
+now.getHours();
+
+4. degree
+1sec = x degree in terms of minutes(= 360/60/60 * sec)
+1min = x degree in terms of hours(= 360/12/60 * min)
