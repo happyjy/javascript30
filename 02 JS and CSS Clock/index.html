@@ -73,6 +73,11 @@
     // 2. set seconHand
     // 3. set minsHand
     // 4. set hourHand
+    
+    // think of degree
+    // 1sec = x degree in terms of minutes(= 360/60/60 * sec)
+    // 1min = x degree in terms of hours(= 360/12/60 * min)
+
 
     const secondHand = document.querySelector('.second-hand');
     const minsHand = document.querySelector('.min-hand');
@@ -83,19 +88,16 @@
         const now = new Date();
 
         const seconds = now.getSeconds();
-        const secondsDegrees = ((seconds/60) * 360) + 90;
+        const secondsDegrees = ((360 / 60) * seconds) + 90;
         secondHand.style.transform = `rotate(${secondsDegrees}deg`;
-        // console.log("### sec : " + seconds);
-        // console.log("### sec / 60 : " + seconds/60);
 
         const mins = now.getMinutes();
-        const minsDegrees = ((mins/60) * 360) + ((seconds/60) * 6) + 90;
+        const minsDegrees = ((360 / 60) * mins) + ((360 / 60 / 60) * seconds) + 90;
         minsHand.style.transform = `rotate(${minsDegrees}deg`;
 
         const hour = now.getHours();
-        const hourDegrees = ((hour / 12) * 360) + ((mins/60)*30) + 90;
+        const hourDegrees = ((360 / 12) * hour) + ((360 / 12 / 60) * mins) + 90;
         hourHand.style.transform = `rotate(${hourDegrees}deg`;
-
     }
 
     setInterval(setDate, 1000);
