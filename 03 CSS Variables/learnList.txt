@@ -1,0 +1,13 @@
+1. double dash in css
+double leading dash is used for defining custom properties. see the below link http://dev.w3.org/csswg/css-variables/
+(normally use $ in SAS)
+Example from W3C:
+
+    :root {
+  --main-color: #05c;
+  --accent-color: #056;
+}
+
+#foo h1 {
+  color: var(--main-color);
+}
