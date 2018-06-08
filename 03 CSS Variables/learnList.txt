@@ -11,3 +11,13 @@ Example from W3C:
 #foo h1 {
   color: var(--main-color);
 }
+
+2. elements dataset(elements attribute)
+//Object data with elements
+//this : elements by querySelectorAll
+//*****dataset : and Object that contain all the 'data attributes' from that specific elements.
+//: data로 시작하는 속성만 가지고 있는 객체
+const suffix = this.dataset.sizing || '';
+
+ <input id="spacing" type="range" name="spacing" min="10" max="200" 
+ value="10" data-sizing="px">
