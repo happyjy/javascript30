@@ -24,6 +24,7 @@
     .panels {
       min-height:100vh;
       overflow: hidden;
+      display: flex;      /* step1. 가로 이미지 세로로 변경 */
     }
 
     .panel {
@@ -34,6 +35,7 @@
       align-items:center;
       /* Safari transitionend event.propertyName === flex */
       /* Chrome + FF transitionend event.propertyName === flex-grow */
+      /* step8 font change */
       transition:
         font-size 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
         flex 0.7s cubic-bezier(0.61,-0.19, 0.7,-0.11),
@@ -41,6 +43,14 @@
       font-size: 20px;
       background-size:cover;
       background-position:center;
+      flex: 1; /*step2. flex items of .panels 
+                        / each of them(class = panel) are going to evenly distribute the extra space among each other*/
+
+      justify-content: center; /*step3. setting letter of p tag*/
+      align-items: center; /*step3. */
+      
+      display: flex; /*step4. panel will be flex, and .panel>* will be flex item*/
+      flex-direction: column; /*step4. */
     }
 
 
@@ -50,11 +60,29 @@
     .panel4 { background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500); }
     .panel5 { background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500); }
 
+
+    /* Flex Items */
     .panel > * {
       margin:0;
       width: 100%;
       transition:transform 0.5s;
+      /* border: 1px solid red;step3 help us visually */
+      /*step5.
+      #need to learn 
+      1. flex value 
+      2. justify-content : horizontal align
+      3. align-items : vertical align */
+      flex: 1 0 auto; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
+
+    .panel > *:first-child {transform: translateY(-100%);}/*step6. puts them off-screen*/
+    .panel.open-active > *:first-child  {transform:translateY(0);}/*step6. puts them on-screen*/
+    .panel > *:last-child { transform: translateY(100%);}/*step6. puts them off-screen*/
+    .panel.open-active > *:last-child {transform: translateY(0);}/*step6. puts them on-screen*/
+
 
     .panel p {
       text-transform: uppercase;
@@ -68,6 +96,8 @@
 
     .panel.open {
       font-size:40px;
+      flex: 5; /*step7 when it ahs a class of open, it's going to takce 5times 
+      the amount of extra room as the rest of them, because they are regular flex of 1.*/
     }
 
   </style>
@@ -102,7 +132,27 @@
   </div>
 
   <script>
+    const panels = document.querySelectorAll('.panel');
 
+    function toggleOpen(){
+      console.log("Hello");
+      this.classList.toggle('open');
+    }
+    
+    function toggleActive(e){
+      console.log(e.propertyName);
+      console.log(e)
+      if(e.propertyName.includes('flex')){
+        this.classList.toggle('open-active');
+      }
+      //#NeedToLearn
+      //1. includes
+    }
+    
+    panels.forEach(panel => panel.addEventListener('click', toggleOpen));
+    panels.forEach(panel => panel.addEventListener('transitionend', toggleActive));
+    //#NeedToLearn
+    //sort of addEventListener
   </script>
 
 
