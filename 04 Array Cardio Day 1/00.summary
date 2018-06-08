@@ -11,3 +11,12 @@ http://hacks.mozilla.or.kr/2015/08/es6-in-depth-template-strings-2/
 * Map
 * Sort
 * Reduce
+
+* Filter
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+* Map
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+* Sort
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+* Reduce
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce
