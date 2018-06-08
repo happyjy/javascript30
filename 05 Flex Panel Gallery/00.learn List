@@ -1,0 +1,14 @@
+#Learn list
+* transition
+* flex
+* justify-content
+* flex-direction
+
+* query selector 
+.panel > *
+.panel > *:first-child
+.panel > *:last-child
+.panel.open-active > *:first-child
+.panel.open-active > *:last-child
+
+* transform: translateY();
