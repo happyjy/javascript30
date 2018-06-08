@@ -1,2 +1,2 @@
 #javascript30
-Hellow javascript30
+Hello javascript30
