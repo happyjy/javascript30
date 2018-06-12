@@ -17,16 +17,36 @@
 <script>
 const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json';
 
-let  cities = [];
 
 //step1. check Promise Object
-//? fetch/ promise
+//?1 return value of fetch : promise (02:00 lecture)
 // const prom = fetch(endpoint);
 // console.log(prom); 
-//? ...data : spread into a function or spread into push method
+
+//?2 blob? 
+// fetch(endpoint)
+//     .then(blob => console.log(blob))
+//위 두줄 console.log 내용 중 respone > __proto__: Response 객체중 json: json()이 있다.
+
+//?3 ...data : spread into a function or spread into push method
+// cities : Array[1] > Array[0] : Array[1000]
+// result of cities.push(1,2,3,4) (no use ...data) : Array[1000], 1, 2, 3, 5
+   
+
+let  cities = [];
 fetch(endpoint)
-    .then(blob => JSON.parse(blob) /*console.log(blob)*/)
-    .then(data => cities.push(...data);
+    .then(blob => console.log(blob));
+
+fetch(endpoint)
+    .then(blob => blob.json());
+
+fetch(endpoint)
+    .then(blob => blob.json())
+    .then(data => console.log(data));
+
+fetch(endpoint)
+    .then(blob => blob.json())
+    .then(data => cities.push(...data));
 
 //step2. 
 function findMatches(wordTomatch, cities){
