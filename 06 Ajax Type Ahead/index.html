@@ -28,33 +28,66 @@ const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb
 //     .then(blob => console.log(blob))
 //위 두줄 console.log 내용 중 respone > __proto__: Response 객체중 json: json()이 있다.
 
-//?3 ...data : spread into a function or spread into push method
+//?3Study - ...data : spread into a function or spread into push method
 // cities : Array[1] > Array[0] : Array[1000]
 // result of cities.push(1,2,3,4) (no use ...data) : Array[1000], 1, 2, 3, 5
    
 
 let  cities = [];
-fetch(endpoint)
-    .then(blob => console.log(blob));
+// fetch(endpoint)
+//     .then(blob => console.log(blob));
 
-fetch(endpoint)
-    .then(blob => blob.json());
+// fetch(endpoint)
+//     .then(blob => blob.json());
 
-fetch(endpoint)
-    .then(blob => blob.json())
-    .then(data => console.log(data));
+// fetch(endpoint)
+//     .then(blob => blob.json())
+//     .then(data => consol e.log(data));
 
 fetch(endpoint)
     .then(blob => blob.json())
     .then(data => cities.push(...data));
 
 //step2. 
-function findMatches(wordTomatch, cities){
+//?Study-RegExp(gi)
+function findMatches(wordToMatch, cities){
     return cities.filter(place => {
-        const regex = new RegExp(wordToMatch, 'gi');
+        // here we need to figure out if the city or state matches what was searched
+        const regex = new RegExp(wordToMatch, 'gi'); //g : global, i : insensitively(대소문자 구분x)
         return place.city.match(regex) || place.state.match(regex)
     });
 }
+//step4.
+function numberWithCommas(x){
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+
+//step3.
+//join to make big on string from several array attribute
+function displayMatches(){
+    // console.log(this.value)  //검색어
+    const matchArray = findMatches(this.value, cities);
+    const html = matchArray.map(place => {
+        const regex = new RegExp(this.value, 'gi');
+        const cityName = place.city.replace(regex, `<span class="hl">${this.value}</span>`);
+        const stateName = place.state.replace(regex, `<span class="hl">${this.value}</span>`);
+        // <span class="name"> ${place.city}, ${place.state} </span>
+        return `
+            <li>
+                <span class="name"> ${cityName}, ${stateName}</span>
+                <span class="population"> ${numberWithCommas(place.population)} </span>
+            </li>
+        `;
+    }).join('');
+    suggestions.innerHTML = html;
+}
+
+const searchInput = document.querySelector('.search');
+const suggestions = document.querySelector('.suggestions');
+
+searchInput.addEventListener('change', displayMatches);
+searchInput.addEventListener('keyup', displayMatches);
+
 </script>
   </body>
 </html>
