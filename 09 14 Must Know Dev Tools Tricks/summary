@@ -1,0 +1,18 @@
+1. shiftKey
+: click event Attribute 
+: when you click with shift key => event.shiftKey will be true
+
+
+2. this with addEventListener
+
+
+eg]
+elements.addEventListener('click', handleCheck);
+
+function handleCheck(e){
+    // summary1 : e.shiftKey
+    // summary2 : this -> you clicked elements
+    if(e.shiftKey && this.checked){
+
+    }
+}
