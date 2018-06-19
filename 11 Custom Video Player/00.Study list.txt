@@ -1,0 +1,24 @@
+*** Study turnery operator ( [] )
+    elements[variables].attibute
+
+*** Study this in temrs of events 
+        this : it's bound to the video elements it self (by queyrSelector)
+
+*** Study dataset
+     * def) on the HTMLElement interface provides read/write 
+     * access to all the custom data attributes (data-*) set on the element. 
+     * 
+     * 1. first Study at lecture 03 CSS variables 
+
+*** Study CSS property(flex, flex-basis)
+     * flex : sets the flexible length on flexible items.
+     * flex-basis : specifies the initial length of a flexible item.
+
+*** Study offsetX
+    : def) offsetX value is progress elements positioned ralative, when you clicked
+    : eg) value of first of progress bar : 1px
+    : value of last of progress bar : progress.offsetWidth px
+
+** Study - && : hijacking the fact that we can use '&&' 
+ * and if this is "true" it will move on to the scrub(e) 
+ * (if this is "false" it will not move on the the scurb(e))
