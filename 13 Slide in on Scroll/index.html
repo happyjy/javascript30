@@ -50,7 +50,9 @@
     //step4 image animate
     //   : image should be on the page at least 50% of its height
 
-    //step5 
+    //step5 slideInAt
+    //step6 slideInAt
+    //step7 imageBottom
 
     //study1
     // # transform < CSS
@@ -85,6 +87,7 @@
   function checkSlide(e){
     // console.count(e);
     console.log(window.scrollY);
+    console.log(window.innerHeight);
     
     sliderImages.forEach(sliderImage => {
       //step5 get bottom of our window of imgs
@@ -119,7 +122,7 @@
   // : the amount of times that it's actually running,
   // * solution of the issue => use debounce function 
 
-    window.addEventListener('scroll', debounce(checkSlide  ));
+    window.addEventListener('scroll', debounce(checkSlide));
   </script>
 
   <style>
