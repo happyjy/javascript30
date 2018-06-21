@@ -1,0 +1,24 @@
+1. debounce function
+: solution of the issue('scroll' event of the Listener)
+
+
+2.  scrollY, window.innerHeight
+const slideInAt = (window.scrollY + window.innerHeight - sliderImage.height/2);
+
+
+3. offsetTop
+const imageBottom = sliderImage.offsetTop + sliderImage.height;
+
+
+4. if statement (image show || not)
+const slideInAt = (window.scrollY + window.innerHeight - sliderImage.height/2);
+const imageBottom = sliderImage.offsetTop + sliderImage.height;
+
+const isHalfShowon = slideInAt > sliderImage.offsetTop;
+const isNotScrolledPast = window.scrollY < imageBottom;
+
+if(isHalfShowon && isNotScrolledPast){
+    sliderImage.classList.add('active'); 
+}else{
+    sliderImage.classList.remove('active'); 
+}
