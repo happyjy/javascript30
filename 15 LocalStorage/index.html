@@ -28,57 +28,70 @@
 <script>
   const addItems = document.querySelector('.add-items');
   const itemsList = document.querySelector('.plates');
-  const items = [];
-//Study order
-//1. Add Item list up 
-//2. refresh & persistance 
-// - refresh and stay list data
-//3. persist the toggling of it
+  //Study order 2
+  const items = JSON.parse(localStorage.getItem('items')) || [];
+  //Study order
+  //1. Add Item list up 
+  //2. refresh & persistance 
+  // - refresh and stay list data
+  //3. persist the toggling of it
 
 
-//1. 
+  //Study order 1
+  function addItem(e){
+    //### sutdy1 prevetnDefault  
+    /*
+      * def : The preventDefault() method cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
+      
+      * For example, this can be useful when:
+        Clicking on a "Submit" button, prevent it from submitting a form
+        Clicking on a link, prevent the link from following the URL  
+    */
+  e.preventDefault(); //won't refresh browser
 
+    const text = (this.querySelector('[name=item]')).value;
+    console.log("### name=item value : " + this.querySelector('[name=item').value);
+    const item = {
+      text, //text : text
+      done: false
+    }
 
-function addItem(e){
-  //### sutdy1 prevetnDefault  
-  /*
-    * def : The preventDefault() method cancels the event if it is cancelable, meaning that the default action that belongs to the event will not occur.
+    items.push(item);
+    populateList(items, itemsList);
+    localStorage.setItem('items', JSON.stringify(items));
+    this.reset();
     
-    * For example, this can be useful when:
-      Clicking on a "Submit" button, prevent it from submitting a form
-      Clicking on a link, prevent the link from following the URL  
-  */
- e.preventDefault(); //won't refresh browser
-
-  const text = (this.querySelector('[name=item]')).value;
-  console.log("### name=item value : " + this.querySelector('[name=item').value);
-  const item = {
-    text, //text : text
-    done: false
   }
 
-  items.push(item);
+  function populateList(plates = [], platesList){
+    platesList.innerHTML = plates.map((plate, i) => {
+      return `
+        <li>
+            <input type="checkbox" data-abc= 'ABC' data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
+            <label for="item${i}"> ${plate.text}</label>
+        </li>
+      `
+    }).join('');
+  }
+
+  //Study order 3
+  function toggleDone(e){
+    // console.log(e);
+    console.log(e.target);
+    console.log(e.target.dataset)
+    //### study 'matches'
+    if(!e.target.matches('input')) return; //skip this unless it's an input
+    const el = e.target;
+    const index = el.dataset.index;
+    items[index].done = !items[index].done;
+    localStorage.setItem('items', JSON.stringify(items));
+    populateList(items, itemsList);
+  }
+
+  addItems.addEventListener('submit', addItem);
+  itemsList.addEventListener('click', toggleDone);
+
   populateList(items, itemsList);
-  
-}
-
-function populateList(plates = [], platesList){
-  platesList.innerHTML = plates.map((plate, i) => {
-    return `
-      <li>
-          <input type="checkbox" data-index=${i} id="item${i}" ${plate.done ? 'checked' : ''} />
-          <label for="item${i}"> ${plate.text}</label>
-      </li>
-    `
-  }).join('');
-}
-
-//1
-addItems.addEventListener('submit', addItem);
-
-
-
-
 </script>
 
 
